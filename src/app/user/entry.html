@@ -1,0 +1,28 @@
+<div class="card">
+  <div class="card-header">
+      {{tital}}
+  </div>
+  <div class="card-body">
+      <form [formGroup]="user" (ngSubmit)="submit()">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Name" formControlName="name" aria-describedby="emailHelp">
+        </div>
+        <div class="form-group">
+          <input type="email" class="form-control" formControlName="email" placeholder="Email" >
+        </div>
+        <div class="form-group">
+          <mat-radio-group aria-label="Select an option" formControlName="role">
+            <mat-radio-button value="Admin"> Admin </mat-radio-button>
+            <mat-radio-button value="CustomerExecutive"> Customer Executive </mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="form-group">
+          <input type="number" class="form-control" formControlName="mobile" placeholder="Mobile Number ">
+        </div>
+
+          <button type="submit" [disabled]="!user.valid" class="btn btn-warning btn-lg btn-block">{{tital}}</button>
+
+
+      </form>
+  </div>
+</div>

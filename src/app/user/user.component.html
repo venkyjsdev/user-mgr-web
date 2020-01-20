@@ -1,0 +1,74 @@
+<app-navbar></app-navbar>
+
+<div class="row">
+
+</div>
+
+
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-md-6">
+      <a > <img src="../../assets/ico_users.svg"> Users </a>
+    </div>
+    <div class="col-md-4">
+      <input class="form-control" type="text" (keyup)="applyFilter($event.target.value)" placeholder="Search..." >
+    </div>
+    <div class="col-md-2">
+      <button type="button" (click)="openDialog('add',null)" class="btn btn-warning"><img src="../../assets/ico_add.svg"> Add User</button>
+    </div>
+
+  </div>
+  <div class="row">
+
+
+
+    <table mat-table [dataSource]="dataSource"  >
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="roleType">
+        <th mat-header-cell *matHeaderCellDef> Role Type </th>
+        <td mat-cell *matCellDef="let element"> {{element.role}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status</th>
+        <td mat-cell *matCellDef="let element" >
+          <div *ngIf="element.active == true">
+            <span class="dotSuccess"></span>Active
+          </div>
+          <div *ngIf="element.active == false">
+            <span class="dotInactive"></span>InActive
+          </div>
+         </td>
+
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>  </th>
+        <td mat-cell *matCellDef="let element">
+          <a class="col-2" (click)="openDialog('edit',element)"> <img src="../../assets/ico_edit.svg"> </a>
+          <button type="button"  (click)="deleteUser(element._id)"  class="btn btn-warning"> delete </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+</div>
+
+
